@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="jasper_report_template" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="1e471bc8-8557-4396-9140-573b54f8d74e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<scriptlet name="myScriptlet" class="org.york.jasper.jasperapp.MyScriptlet"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\tools\\jasperreports-5.0.1\\test\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="york" class="java.lang.String"/>
+	<parameter name="chen" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[select 'b' as name, 'c' as country]]>
+	</queryString>
+	<field name="country" class="java.lang.String"/>
+	<variable name="dataList" class="java.util.ArrayList" resetType="Page"/>
+	<variable name="york" class="java.lang.String"/>
+	<variable name="chen" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="93" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="40ac4557-368e-4865-8aa0-ded6979fd7de" x="0" y="0" width="204" height="34"/>
+				<textElement>
+					<font size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Contact Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="68" splitType="Stretch">
+			<line>
+				<reportElement uuid="db09a50b-507a-4146-9cdd-9fac570da934" x="0" y="0" width="550" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="d528d642-1499-4f48-b86c-73759fd2f80d" x="38" y="13" width="100" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[V York:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="9b92e53d-af4f-47e4-b535-7f9510a91816" x="138" y="13" width="277" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{york}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c3e37090-06b3-4d7f-9add-8649871fe51f" x="138" y="33" width="277" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{chen}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="ba044e7e-c453-4730-8614-abf0781d8efd" x="38" y="33" width="100" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[V Chen:]]></text>
+			</staticText>
+			<subreport>
+				<reportElement uuid="d250ded0-6646-4b3f-8358-0931ae6a4fd3" positionType="Float" x="303" y="48" width="175" height="20" isRemoveLineWhenBlank="true" backcolor="#99CCFF"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRMapCollectionDataSource($V{dataList})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "address_report_template.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="66" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="83" splitType="Stretch"/>
+	</summary>
+</jasperReport>
